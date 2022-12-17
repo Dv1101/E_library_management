@@ -34,9 +34,27 @@
                         
                         <div class="container">
                             <div class="col">
-                                <div class="form-group">
-
+                                <label>Member ID</label>
+                                    <div class="form-group">                             
+                                        <asp:TextBox ID="TextBox1" cssClass="form-control" runat="server" placeholder="Member ID"></asp:TextBox>
                                 </div>
+                                <label>Password</label>
+                                    <div class="form-group">                             
+                                        <asp:TextBox ID="TextBox2" cssClass="form-control" runat="server" placeholder="Password" TextMode="Password"></asp:TextBox>
+                                </div>
+
+                                <div class="form-group">      
+                                    <asp:Button ID="Button1" class="btn btn-success btn-block btn-lg" runat="server" Text="Log-in" />
+                                </div>
+
+
+                                <div class="form-group">  
+                                    <a href="signup.aspx">
+                                    <asp:Button ID="Button2" class="btn btn-info btn-block btn-lg" runat="server" Text="Sign Up" />
+                                        </a>
+                                </div> 
+
+                               
                             </div>
                         </div>
                                 
@@ -44,6 +62,9 @@
                        
                     </div>
                 </div>
+
+
+                <a href="homepage.aspx"><< Back to Home</a><br /><br />
             </div>
         </div>
     </div>
