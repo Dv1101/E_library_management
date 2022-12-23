@@ -11,7 +11,58 @@ namespace E_library_management
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            try
+            {
+                if (Session["role"].Equals(""))
+                {
+                    LinkButton1.Visible = true; //user login btn
+                    LinkButton2.Visible = true; //sign up btn
+                    LinkButton3.Visible = false; //logout btn
+                    LinkButton7.Visible = false; //hello user btn
 
+                    LinkButton6.Visible = true; //admin login
+                    LinkButton11.Visible = false; //author management
+                    LinkButton12.Visible = false; //publisher management
+                    LinkButton8.Visible = false; //book inventory
+                    LinkButton9.Visible = false; //book issuing
+                    LinkButton10.Visible = false; //Member Management
+                }
+                else if (Session["role"].Equals("user"))
+                {
+                    LinkButton1.Visible = false; //user login btn
+                    LinkButton2.Visible = false; //sign up btn
+                    LinkButton3.Visible = true; //logout btn
+                    LinkButton7.Visible = true; //hello user btn
+                    LinkButton7.Text = "Hello, " + Session["username"].ToString();
+
+                    LinkButton6.Visible = true; //admin login
+                    LinkButton11.Visible = false; //author management
+                    LinkButton12.Visible = false; //publisher management
+                    LinkButton8.Visible = false; //book inventory
+                    LinkButton9.Visible = false; //book issuing
+                    LinkButton10.Visible = false; //Member Management
+                }
+
+                else if (Session["role"].Equals("admin"))
+                {
+                    LinkButton1.Visible = false; //user login btn
+                    LinkButton2.Visible = false; //sign up btn
+                    LinkButton3.Visible = true; //logout btn
+                    LinkButton7.Visible = true; //hello user btn
+                    LinkButton7.Text = "Hello, ADMIN ";
+
+                    LinkButton6.Visible = false; //admin login
+                    LinkButton11.Visible = true; //author management
+                    LinkButton12.Visible = true; //publisher management
+                    LinkButton8.Visible = true; //book inventory
+                    LinkButton9.Visible = true; //book issuing
+                    LinkButton10.Visible = true; //Member Management
+                }
+            }
+            catch(Exception ex) 
+            {
+            
+            }
         }
 
         protected void LinkButton6_Click(object sender, EventArgs e)
@@ -47,6 +98,28 @@ namespace E_library_management
         {
             Response.Redirect("adminmembermanagement.aspx");
 
+        }
+        protected void LinkButton3_Click1(object sender, EventArgs e)
+        {
+            Response.Write("<script>alert('Logged Out Successful');</script>");
+            Session["username"] = "";
+            Session["fullname"] = "";
+            Session["role"] = "";
+            Session["status"] = "";
+
+            LinkButton1.Visible = true; //user login btn
+            LinkButton2.Visible = true; //sign up btn
+            LinkButton3.Visible = false; //logout btn
+            LinkButton7.Visible = false; //hello user btn
+
+            LinkButton6.Visible = true; //admin login
+            LinkButton11.Visible = false; //author management
+            LinkButton12.Visible = false; //publisher management
+            LinkButton8.Visible = false; //book inventory
+            LinkButton9.Visible = false; //book issuing
+            LinkButton10.Visible = false; //Member Management
+
+            Response.Redirect("homepage.aspx");
         }
     }
 }

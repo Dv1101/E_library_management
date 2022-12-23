@@ -21,7 +21,19 @@ namespace E_library_management
         protected void Button1_Click(object sender, EventArgs e)
         {
             /* Response.Write("<script>alert('Testing');</script>");  */
+            if(checkmemberid())
+            {
+                Response.Write("<script>alert('Member already exist with this member id.')</script>");
+            }
+            else
+            {
+                signupuser();
+            }
+            
+        }
 
+        bool checkmemberid()
+        {
             try
             {
                 SqlConnection con = new SqlConnection(strcon);
@@ -30,9 +42,61 @@ namespace E_library_management
                     con.Open();
                 }
 
-                SqlCommand cmd = new SqlCommand("insert into member_master_tbl( full_name,dob,contact_no,email, state, city,pincode, full_address, member_d)", con); 
-            }   
-            catch(Exception ex) { 
+                SqlCommand cmd = new SqlCommand("SELECT * from member_master_tbl where member_id='"+TextBox10.Text.Trim()+"';", con);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if(dt.Rows.Count >= 1) 
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + " ');</script>");
+                return false;
+            }
+        }
+
+        void signupuser()
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(strcon);
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+
+                SqlCommand cmd = new SqlCommand("INSERT INTO member_master_tbl( full_name,dob,contact_no,email, state, city,pincode, full_address, member_id, password,account_status) values (@full_name,@dob,@contact_no,@email, @state, @city,@pincode, @full_address, @member_id, @password,@account_status)", con);
+
+                cmd.Parameters.AddWithValue("@full_name", TextBox3.Text.Trim());
+                cmd.Parameters.AddWithValue("@dob", TextBox4.Text.Trim());
+                cmd.Parameters.AddWithValue("@contact_no", TextBox5.Text.Trim());
+                cmd.Parameters.AddWithValue("@email", TextBox6.Text.Trim());
+                cmd.Parameters.AddWithValue("@state", DropDownList1.SelectedItem.Value);
+                cmd.Parameters.AddWithValue("@city", TextBox7.Text.Trim());
+                cmd.Parameters.AddWithValue("@pincode", TextBox8.Text.Trim());
+                cmd.Parameters.AddWithValue("@full_address", TextBox9.Text.Trim());
+                cmd.Parameters.AddWithValue("@member_id", TextBox10.Text.Trim());
+                cmd.Parameters.AddWithValue("@password", TextBox11.Text.Trim());
+                cmd.Parameters.AddWithValue("@account_status", "pending");
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+                Response.Write("<script>alert('Sign Up Successful , Kindly go to login page for login.')</script>");
+
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + " ');</script>");
             }
         }
     }
