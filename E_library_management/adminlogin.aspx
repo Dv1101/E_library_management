@@ -37,7 +37,7 @@
                             <div class="col">
                                 <label>Admin ID</label>
                                     <div class="form-group">                             
-                                        <asp:TextBox ID="TextBox1" cssClass="form-control" runat="server" placeholder="Admin ID"></asp:TextBox>
+                                        <asp:TextBox ID="TextBox1" cssClass="form-control" runat="server" placeholder="Admin ID" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
                                 </div>
                                 <label>Password</label>
                                     <div class="form-group">                             

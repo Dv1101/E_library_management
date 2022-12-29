@@ -57,5 +57,10 @@ namespace E_library_management
                 Response.Write("<script>alert('" + ex.Message + " ');</script>");
             }
         }
+
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

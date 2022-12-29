@@ -26,6 +26,8 @@
    
     /* transition-duration: 1s; */
     -webkit-transition: 1.5s;
+    height: 36px;
+    width: 124px;
 }
 
 .nav-link:hover{
