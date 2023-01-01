@@ -55,7 +55,7 @@
 
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <asp:LinkButton class="nav-link" ID="LinkButton4" runat="server">View Books</asp:LinkButton>
+                            <asp:LinkButton class="nav-link" ID="LinkButton4" href="viewbooks.aspx" runat="server">View Books</asp:LinkButton>
                         </li>
                         
                         <li class="nav-item active">
@@ -69,7 +69,7 @@
                         </li>
 
                         <li class="nav-item active">
-                            <asp:LinkButton class="nav-link" ID="LinkButton7" runat="server" Visible="False">Hello user</asp:LinkButton>
+                            <asp:LinkButton class="nav-link" ID="LinkButton7" href="userprofileview.aspx" runat="server" Visible="False">Hello user</asp:LinkButton>
                         </li>
                     </ul>
                 </div>

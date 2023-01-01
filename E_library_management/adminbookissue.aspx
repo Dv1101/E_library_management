@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="adminbookissue.aspx.cs" Inherits="E_library_management.adminbookissue" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -39,7 +40,7 @@
                         <div class="form-group">
                            <div class="input-group">
                               <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" placeholder="Book ID"></asp:TextBox>
-                              <asp:Button class="btn btn-primary" ID="Button1" runat="server" Text="Go" />
+                              <asp:Button class="btn btn-primary" ID="Button1" runat="server" Text="Go" OnClick="Button1_Click1" />
                            </div>
                         </div>
                      </div>
@@ -74,10 +75,10 @@
                   </div>
                   <div class="row">
                      <div class="col-6">
-                        <asp:Button ID="Button2" class="btn btn-lg btn-block btn-primary" runat="server" Text="Issue" />
+                        <asp:Button ID="Button2" class="btn btn-lg btn-block btn-primary" runat="server" Text="Issue" OnClick="Button2_Click1" />
                      </div>
                      <div class="col-6">
-                        <asp:Button ID="Button4" class="btn btn-lg btn-block btn-success" runat="server" Text="Return" />
+                        <asp:Button ID="Button4" class="btn btn-lg btn-block btn-success" runat="server" Text="Return" OnClick="Button4_Click" />
                      </div>
                   </div>
                </div>
@@ -101,8 +102,18 @@
                      </div>
                   </div>
                   <div class="row">
+                      <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:elibraryDBConnectionString %>" SelectCommand="SELECT * FROM [book_issue_tbl]"></asp:SqlDataSource>
                      <div class="col">
-                        <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server"></asp:GridView>
+                        <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnRowDataBound="GridView1_RowDataBound1">
+                            <Columns>
+                                <asp:BoundField DataField="member_id" HeaderText="Member ID" SortExpression="member_id" />
+                                <asp:BoundField DataField="member_name" HeaderText="Member Name" SortExpression="member_name" />
+                                <asp:BoundField DataField="book_id" HeaderText="Book ID" SortExpression="book_id" />
+                                <asp:BoundField DataField="book_name" HeaderText="Book Name" SortExpression="book_name" />
+                                <asp:BoundField DataField="issue_date" HeaderText="Issue Date" SortExpression="issue_date" />
+                                <asp:BoundField DataField="due_date" HeaderText="Due Date" SortExpression="due_date" />
+                            </Columns>
+                         </asp:GridView>
                      </div>
                   </div>
                </div>
